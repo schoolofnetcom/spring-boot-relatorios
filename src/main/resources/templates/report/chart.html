@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html
+	xmlns:th="http://thymeleaf.org"
+	xmlns:layout="http://ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout">
+<head>
+	<meta charset="UTF-8" />
+	<title>Insert title here</title>
+</head>
+<body>	
+	<th:block layout:fragment="content">
+		<div>
+			<canvas id="chart" width="400" height="400"></canvas>
+		</div>
+	</th:block>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+	<script th:inline="javascript">
+		/*<![CDATA[*/
+			var context = document.getElementById("chart").getContext("2d")
+				var chart = new Chart(context, {
+				type: 'bar',
+				data: {
+					labels: /*[[${labels}]]*/,
+					datasets:[{
+						label: '# States',
+						data: /*[[${data}]]*/
+					}]
+				}
+			})			
+		/*]]>*/
+	</script>	
+</body>
+</html>
